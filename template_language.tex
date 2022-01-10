@@ -1,0 +1,348 @@
+\documentclass[letter, 12pt]{article} % letter size paper, 12pt font
+\usepackage[margin = 1in]{geometry} % margins 1in
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{tipa}
+\usepackage{color}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[none]{hyphenat}
+\usepackage{microtype}
+\usepackage{mathptmx}
+\usepackage{rotating}
+\usepackage[toc,page]{appendix}
+\usepackage{array,multirow}
+\usepackage{pdflscape}
+\usepackage{lscape}
+\usepackage{pifont}
+
+\newcommand{\cmark}{\ding{51}} % how to make a nice tick symbol
+\newcommand{\xmark}{\ding{55}} % how to make a nice cross symbol
+
+% Setup options needed:
+
+\usepackage{setspace} % use for double or 1.5 line spacing
+\onehalfspacing %1.5 spacing
+
+\usepackage{caption}
+\captionsetup{justification=raggedright, singlelinecheck=false} % left-align captions
+
+\raggedright % left-align text
+
+\setcounter{page}{0} % set first page number to 0
+
+% put page numbers in top right
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyheadoffset{0cm}
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[R]{\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyhead[R]{\thepage}%
+}
+
+\usepackage{enotez} % automated endnotes
+\let\footnote=\endnote % footnotes appear as endnotes
+\renewcommand{\footnotesize}{\fontsize{12pt}{11pt}\selectfont} % change footnote font size to 12pt
+
+\usepackage{sectsty} % change section heading font size
+\sectionfont{\fontsize{12}{15}\selectfont} % set section font size to 12pt
+\subsectionfont{\fontsize{12}{15}\selectfont} % set subsection font size to 12pt
+
+% section and subsection headings to small caps 
+% section and subsection headings on the same line as text
+\usepackage{titlesec}
+\titleformat{\section}[runin]{\normalfont\scshape}{\thesection}{0.5em}{}[.] 
+\titleformat{\subsection}[runin]{\normalfont\scshape}{\thesubsection}{0.5em}{}[.]
+
+% reference format setup
+% use biblatex rather than natbib as options are more customisable
+\usepackage[
+backend=biber,
+style=authoryear,
+dashed=false, % print out names for multiple works by same author instead of dashes
+maxcitenames=2, % only mention 2 names then et al.
+maxbibnames=99 % display all author names in bibliography
+]{biblatex}
+\usepackage{xpatch}
+
+% remove inverted commas around article titles
+\DeclareFieldFormat
+ [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{#1\isdot}
+  
+% remove 'pp.' for page numbers
+\DeclareFieldFormat{pages}{#1} 
+
+% add a full stop after article volume number
+\DeclareFieldFormat[article]{volume}{#1\addperiod\space}
+
+% add a comma after incollection book main title so 'Ed' shows as 'ed'
+% also, make booktitle italic
+\DeclareFieldFormat[incollection]{booktitle}{\mkbibemph{#1\addcomma\space}}
+
+% make thesis titles in italic
+\DeclareFieldFormat[thesis]{title}{\mkbibemph{#1}} 
+
+% add full stop after publisher in edited collections
+\renewcommand{\bibpagespunct}{%
+\ifentrytype{incollection,inproceedings}
+   {\addperiod\addspace}
+   {\addperiod\addspace}}
+
+% remove 'In:' preceding journal articles, proceedings, chapers etc.
+\renewbibmacro{in:}{}
+
+% remove journal number within volumes
+\AtEveryBibitem{%
+  \clearfield{number}}
+
+% names of bibliographies
+\addbibresource{biblio.bib}
+% \addbibresource{bibliography.bib} % add other bib files here if needed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{\Large{\bf  }} 
+\author{}
+\date{}
+\begin{document}
+
+\begingroup % this is to make '&' appear instead of 'and' for multiple authors in references
+\renewcommand*\finalnamedelim{ \& }
+
+\maketitle
+\setlength\parindent{0pt} % no indents at start of paragraph
+\setlength{\parskip}{1em} % blank line before paragraph start
+
+% First page is article title and author details
+My great article: Subtitle \\
+
+\vspace{1cm}
+
+Name \\
+University \\
+Email \\
+Address 
+
+\vspace{1cm}
+
+Co-author \\
+University \\
+Email \\
+Address
+
+\clearpage
+
+% second page is just the title
+My great article: Subtitle \\
+
+\clearpage
+
+% next page is the abstract and keywords
+\section*{Abstract}
+
+Abstract text.*
+
+Keywords: some key words, separated by commas
+
+\vspace{2cm}
+
+*Acknowledgements text here.
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\normalsize
+\section{Introduction}
+
+
+\subsection{First subsection}
+
+
+\subsection{Another subsection}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Methods}
+
+\subsection{Speakers}
+
+
+
+\subsection{Data collection}
+
+
+
+\subsection{Data segmentation}
+
+
+\subsection{More methods}
+
+
+\subsection{Statistical testing}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Results}
+
+\subsection{Auditory analysis}
+
+We found some cool things. And we made some graphs and did some stats.
+
+
+\subsection{Acoustic analysis}
+
+We found some cool things. And we made some graphs and did some stats.
+
+
+\subsection{Ultrasound analysis}
+
+We found some cool things. And we made some graphs and did some stats.
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Discussion}
+
+\subsection{Summary of results}
+
+
+\subsection{Another subsection}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Conclusion}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\clearpage
+\appendix
+
+\section{Appendix}
+
+\subsection{Appendix subsection} \hspace{2cm}
+
+
+\subsection{Another appendix} \hspace{2cm}
+
+
+\clearpage
+
+\endgroup % at end of article text
+% 'and' will now appear between multiple authors in the reference list
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% references will go here
+
+% make names appear in small caps
+\renewcommand\mkbibnamefamily[1]{\textsc{#1}}
+\renewcommand\mkbibnamegiven[1]{\textsc{#1}}
+\renewcommand\mkbibnameprefix[1]{\textsc{#1}}
+\renewcommand\mkbibnamesuffix[1]{\textsc{#1}}
+
+% make editor names not small caps
+\DeclareFieldFormat[incollection]{editor}
+
+% remove the brackets around the dates
+\xpatchbibmacro{date+extradate}{%
+  \printtext[parens]%
+}{%
+  \setunit{\addperiod\space}%
+  \printtext%
+}{}{}
+
+\printbibliography % put the references here
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% if there are any references in the footnotes, tables, figures, make them appear in normal text not small caps.
+\renewcommand\mkbibnamefamily[1]{\textnormal{#1}}
+\renewcommand\mkbibnamegiven[1]{\textnormal{#1}}
+\renewcommand\mkbibnameprefix[1]{\textnormal{#1}}
+\renewcommand\mkbibnamesuffix[1]{\textnormal{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Footnotes here
+
+\section*{Footnotes} \hspace{5cm}
+
+\normalsize % make endnotes appear in size 12 font
+\printendnotes  % endnotes appear here
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Figures go here
+
+% put command to include the first figure here
+
+\clearpage
+
+% second figure here
+% make sure there is \clearpage between them
+
+\clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Tables
+
+% put tables here
+
+% make sure there is \clearpage between each table
+
+\clearpage
+
+% The End!
+
+\end{document}
+
+
+
